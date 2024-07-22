@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddh2c5tgwg2hx"]
+
+[ext_resource type="Script" path="res://src/coin.gd" id="1_3g3l4"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_qn08v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akd5t"]
+
+[node name="coin" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_3g3l4")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(20, 20)
+mesh = SubResource("QuadMesh_qn08v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_akd5t")
