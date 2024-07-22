@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpmriigh30oo5"]
+[gd_scene load_steps=3 format=3 uid="uid://dpmriigh30oo5"]
 
+[ext_resource type="PackedScene" uid="uid://co80gk8vy0sbu" path="res://characters/player.tscn" id="1_73sk7"]
 [ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_lrf1o"]
 
 [node name="Sandbox" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource("1_73sk7")]
+position = Vector2(125, 58)
+
 [node name="Floor" parent="." instance=ExtResource("1_lrf1o")]
+position = Vector2(-1, 680)
+scale = Vector2(32.04, 1)
+
+[node name="Floor2" parent="." instance=ExtResource("1_lrf1o")]
+position = Vector2(187, 592)
+scale = Vector2(2.84, 1)

@@ -1,9 +1,27 @@
-[gd_scene format=3 uid="uid://dcswfxq1gsnai"]
+[gd_scene load_steps=5 format=3 uid="uid://dcswfxq1gsnai"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8ol4k"]
+
+[sub_resource type="Gradient" id="Gradient_16y56"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.372549, 0.619608, 0.627451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aqyfg"]
+gradient = SubResource("Gradient_16y56")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl13i"]
+size = Vector2(40, 40)
 
 [node name="Floor" type="Node2D"]
-position = Vector2(356, 194)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.372549, 0.619608, 0.627451, 1)
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(20, 20)
+scale = Vector2(40, 40)
+mesh = SubResource("QuadMesh_8ol4k")
+texture = SubResource("GradientTexture1D_aqyfg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_vl13i")

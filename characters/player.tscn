@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://co80gk8vy0sbu"]
+
+[ext_resource type="Script" path="res://characters/player.gd" id="1_281eu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jit7h"]
+
+[sub_resource type="Gradient" id="Gradient_63rk5"]
+offsets = PackedFloat32Array(0.994012)
+colors = PackedColorArray(1, 0.498039, 0.313726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_828f7"]
+gradient = SubResource("Gradient_63rk5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y51ym"]
+size = Vector2(25, 50)
+
+[node name="Player" type="CharacterBody2D"]
+floor_constant_speed = true
+script = ExtResource("1_281eu")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(25, 50)
+mesh = SubResource("QuadMesh_jit7h")
+texture = SubResource("GradientTexture1D_828f7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y51ym")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
