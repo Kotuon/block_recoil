@@ -48,8 +48,10 @@ func _ready() -> void:
         can_coyote_jump = false
     coyote_timer.connect( "timeout", timeout_coyote )
 
+    # Coin object setup
     coin_ref = preload( "res://items/coin.tscn" ).instantiate()
     get_parent().add_child.call_deferred( coin_ref )
+    coin_ref.position = Vector2( -10000000.0, -10000000.0 )
 
 
 func _physics_process( _delta: float ) -> void:
@@ -98,6 +100,7 @@ func update_jump() -> void:
 
     if !collision_result && last_collision_result:
         can_coyote_jump = true
+        coyote_timer.start()
 
     if Input.is_action_just_pressed( "jump" ):
         has_jump_input = true
@@ -107,4 +110,5 @@ func update_jump() -> void:
 
     if ( is_on_floor() || can_coyote_jump ) && has_jump_input:
         has_jump_input = false
+        can_coyote_jump = false
         velocity.y = jump_speed * modifier
