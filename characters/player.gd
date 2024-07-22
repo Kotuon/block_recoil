@@ -1,10 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
+## Movement ##
+# Scale numbers so values aren't as large
 var modifier : float = 100.0
-
+# General values
 var gravity : float = 10.0
 var walk_speed : float = 400.0
+
+var friction : float = 0.1
+var accel : float = 0.25
 
 ## Jump ##
 # Jump memory
@@ -18,11 +23,9 @@ var can_coyote_jump : bool = false
 var jump_speed : float = -5.0
 var has_jump_input : bool = false
 
-var friction : float = 0.1
-var accel : float = 0.25
-
-func _draw() -> void:
-    pass
+## Coin ##
+var has_shot_coin : bool = false
+var coin_ref : CharacterBody2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,13 +48,40 @@ func _ready() -> void:
         can_coyote_jump = false
     coyote_timer.connect( "timeout", timeout_coyote )
 
+    coin_ref = preload( "res://items/coin.tscn" ).instantiate()
+    get_parent().add_child.call_deferred( coin_ref )
 
-func _physics_process(_delta: float) -> void:
+
+func _physics_process( _delta: float ) -> void:
     pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process( delta: float ) -> void:
+    update_walk( delta )
+    update_jump()
+
+    if Input.is_action_just_pressed( "take_coin" ):
+        has_shot_coin = false
+        coin_ref.position = Vector2( -10000000.0, -10000000.0 )
+
+    if Input.is_action_pressed( "push_coin" ) && has_shot_coin:
+        if coin_ref.has_hit:
+            velocity += ( position - coin_ref.position ).normalized() * 15.0
+
+    if Input.is_action_pressed( "pull_coin" ) && has_shot_coin:
+        if coin_ref.has_hit:
+            velocity += ( coin_ref.position - position ).normalized() * 15.0
+
+    if !has_shot_coin && Input.is_action_just_pressed( "push_coin" ):
+        has_shot_coin = true
+        coin_ref.position = position
+        coin_ref.move_velocity = ( get_global_mouse_position() - position ).normalized() * 1000.0
+        coin_ref.has_hit = false
+
+
+
+func update_walk( delta: float ) -> void:
     var inputDirection = Input.get_axis( "walk_left", "walk_right" )
     velocity.y += gravity * delta * modifier
 
@@ -61,6 +91,8 @@ func _process(delta: float) -> void:
     else:
         velocity.x = lerp( velocity.x, 0.0, friction )
 
+
+func update_jump() -> void:
     var last_collision_result = is_on_floor()
     var collision_result = move_and_slide()
 
@@ -73,6 +105,6 @@ func _process(delta: float) -> void:
             jump_memory_timer.start()
 
 
-    if (is_on_floor() || can_coyote_jump) && has_jump_input:
+    if ( is_on_floor() || can_coyote_jump ) && has_jump_input:
         has_jump_input = false
         velocity.y = jump_speed * modifier
