@@ -5,11 +5,16 @@ class_name Player
 # Scale numbers so values aren't as large
 var modifier : float = 100.0
 # General values
-var gravity : float = 10.0
+var gravity : float = 15.0
 var walk_speed : float = 400.0
 
 var friction : float = 0.1
 var accel : float = 0.25
+
+var freeze_timer := Timer.new()
+var last_grounded_position : Vector2
+var time_frozen : float = 0.75
+var can_move : bool = true
 
 ## Jump ##
 # Jump memory
@@ -40,6 +45,17 @@ var should_recharge_mana : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    # Initializing respawn point
+    last_grounded_position = position
+
+    add_child( freeze_timer )
+    freeze_timer.set_one_shot( true )
+    freeze_timer.set_wait_time( time_frozen )
+
+    var timeout_freeze = func():
+        can_move = true
+    freeze_timer.connect( "timeout", timeout_freeze )
+
     # Setting cursor
     Input.set_default_cursor_shape( Input.CURSOR_CROSS )
 
@@ -88,10 +104,17 @@ func _physics_process( _delta: float ) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process( delta: float ) -> void:
-    update_walk( delta )
-    update_jump()
-    update_coin( delta )
+    if can_move:
+        update_walk( delta )
+        update_jump()
+        update_coin( delta )
+
     update_mana_bar( delta )
+
+    if position.y > 1440.0:
+        can_move = false
+        freeze_timer.start()
+        position = last_grounded_position
 
 
 func update_walk( delta: float ) -> void:
@@ -122,6 +145,7 @@ func update_jump() -> void:
     if ( is_on_floor() || can_coyote_jump ) && has_jump_input:
         has_jump_input = false
         can_coyote_jump = false
+        last_grounded_position = position
         velocity.y = jump_speed * modifier
 
 

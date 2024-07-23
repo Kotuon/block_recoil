@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2m4hu4akdf4n"]
+
+[ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="1_oq20e"]
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="2_fgmq0"]
+[ext_resource type="PackedScene" uid="uid://dod4kcsuct0gr" path="res://terrain/moving_platform.tscn" id="3_24yli"]
+[ext_resource type="PackedScene" uid="uid://co80gk8vy0sbu" path="res://characters/player.tscn" id="3_gjcl2"]
+
+[node name="level1" type="Node2D"]
+
+[node name="StartPosition" type="Node2D" parent="."]
+position = Vector2(60, 430)
+
+[node name="mouse_cursor" parent="." instance=ExtResource("1_oq20e")]
+
+[node name="Player" parent="." instance=ExtResource("3_gjcl2")]
+position = Vector2(3883, 82)
+
+[node name="MovingPlatforms" type="Node" parent="."]
+
+[node name="moving_platform" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(2240, 148)
+scale = Vector2(2.75, 1)
+offset = Vector2(320, 0)
+
+[node name="moving_platform2" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(3080, 148)
+scale = Vector2(2.75, 1)
+offset = Vector2(-320, 0)
+
+[node name="moving_platform3" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(3310, 148)
+scale = Vector2(2.75, 1)
+offset = Vector2(320, 0)
+
+[node name="moving_platform4" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(4120, -172)
+scale = Vector2(2.75, 1)
+offset = Vector2(0, 320)
+
+[node name="moving_platform5" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(4290, -172)
+scale = Vector2(2.75, 1)
+offset = Vector2(320, 0)
+
+[node name="moving_platform6" parent="MovingPlatforms" instance=ExtResource("3_24yli")]
+position = Vector2(4950, -432)
+scale = Vector2(2.75, 1)
+offset = Vector2(-200, 200)
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(0, 468)
+scale = Vector2(2.75, 1)
+
+[node name="Floor2" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(180, 468)
+scale = Vector2(2.75, 1)
+
+[node name="Floor3" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(450, 468)
+scale = Vector2(2.75, 1)
+
+[node name="Floor4" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(720, 468)
+scale = Vector2(2.75, 1)
+
+[node name="Floor5" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(900, 428)
+scale = Vector2(2.75, 1)
+
+[node name="Floor6" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(1125, 388)
+scale = Vector2(2.75, 1)
+
+[node name="Floor7" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(1395, 348)
+scale = Vector2(2.75, 1)
+
+[node name="Floor8" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(1575, 278)
+scale = Vector2(2.75, 1)
+
+[node name="Floor9" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(1800, 208)
+scale = Vector2(2.75, 1)
+
+[node name="Floor10" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(2060, 148)
+scale = Vector2(2.75, 1)
+
+[node name="Floor11" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(3830, 148)
+scale = Vector2(2.75, 1)
+
+[node name="Floor12" parent="Floors" instance=ExtResource("2_fgmq0")]
+position = Vector2(5195, -432)
+scale = Vector2(2.75, 1)

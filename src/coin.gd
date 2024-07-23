@@ -4,7 +4,7 @@ class_name Coin
 var has_hit : bool = false
 var move_velocity : Vector2
 
-var gravity : float = 10.0
+var gravity : float = 15.0
 var total_gravity : float
 
 var player : CharacterBody2D
