@@ -24,16 +24,29 @@ var jump_speed : float = -5.0
 var has_jump_input : bool = false
 
 ## Coin ##
-var has_shot_coin : bool = false
 var coin_ref : CharacterBody2D
+var force_of_coin : float = 15.0
+var has_shot_coin : bool = false
+# Resource bar
+@onready var mana_bar := $ManaBar
+var mana_recharge_timer := Timer.new()
+var total_mana : float = 100.0
+var coin_cost_rate : float = 90.0
+var coin_recharge_rate : float = 1.0
+var curr_mana : float = total_mana
+var time_until_mana_recharge_starts : float = 1.0
+var should_recharge_mana : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    # Setting cursor
+    Input.set_default_cursor_shape( Input.CURSOR_CROSS )
+
     # Jump memory timer setup
     add_child( jump_memory_timer )
-    jump_memory_timer.one_shot = true
-    jump_memory_timer.wait_time = jump_memory_time
+    jump_memory_timer.set_one_shot( true )
+    jump_memory_timer.set_wait_time( jump_memory_time )
 
     var timeout_jump_memory = func():
         has_jump_input = false
@@ -41,8 +54,8 @@ func _ready() -> void:
 
     # Coyote timer setup
     add_child( coyote_timer )
-    coyote_timer.one_shot = true
-    coyote_timer.wait_time = coyote_time
+    coyote_timer.set_one_shot( true )
+    coyote_timer.set_wait_time( coyote_time )
 
     var timeout_coyote = func():
         can_coyote_jump = false
@@ -52,6 +65,21 @@ func _ready() -> void:
     coin_ref = preload( "res://items/coin.tscn" ).instantiate()
     get_parent().add_child.call_deferred( coin_ref )
     coin_ref.position = Vector2( -10000000.0, -10000000.0 )
+    coin_ref.player = self
+
+    # Mana bar setup
+    mana_bar.min_value = 0.0
+    mana_bar.max_value = total_mana
+    mana_bar.set_value_no_signal( curr_mana )
+
+    # Mana recharge timer setup
+    add_child( mana_recharge_timer )
+    mana_recharge_timer.set_one_shot( true )
+    mana_recharge_timer.set_wait_time( time_until_mana_recharge_starts )
+
+    var timeout_mana = func():
+        should_recharge_mana = true
+    mana_recharge_timer.connect( "timeout", timeout_mana )
 
 
 func _physics_process( _delta: float ) -> void:
@@ -62,25 +90,8 @@ func _physics_process( _delta: float ) -> void:
 func _process( delta: float ) -> void:
     update_walk( delta )
     update_jump()
-
-    if Input.is_action_just_pressed( "take_coin" ):
-        has_shot_coin = false
-        coin_ref.position = Vector2( -10000000.0, -10000000.0 )
-
-    if Input.is_action_pressed( "push_coin" ) && has_shot_coin:
-        if coin_ref.has_hit:
-            velocity += ( position - coin_ref.position ).normalized() * 15.0
-
-    if Input.is_action_pressed( "pull_coin" ) && has_shot_coin:
-        if coin_ref.has_hit:
-            velocity += ( coin_ref.position - position ).normalized() * 15.0
-
-    if !has_shot_coin && Input.is_action_just_pressed( "push_coin" ):
-        has_shot_coin = true
-        coin_ref.position = position
-        coin_ref.move_velocity = ( get_global_mouse_position() - position ).normalized() * 1000.0
-        coin_ref.has_hit = false
-
+    update_coin( delta )
+    update_mana_bar( delta )
 
 
 func update_walk( delta: float ) -> void:
@@ -89,7 +100,7 @@ func update_walk( delta: float ) -> void:
 
     if inputDirection != 0:
         var walkAmount = inputDirection * walk_speed * delta * modifier
-        velocity.x = lerp( velocity.x, walkAmount , accel )
+        velocity.x = lerp( velocity.x, walkAmount, accel )
     else:
         velocity.x = lerp( velocity.x, 0.0, friction )
 
@@ -112,3 +123,40 @@ func update_jump() -> void:
         has_jump_input = false
         can_coyote_jump = false
         velocity.y = jump_speed * modifier
+
+
+func update_coin( delta: float ) -> void:
+    if Input.is_action_just_pressed( "take_coin" ):
+        has_shot_coin = false
+        coin_ref.position = Vector2( -10000000.0, -10000000.0 )
+
+    var has_input : bool = false
+
+    if Input.is_action_pressed( "push_coin" ) && has_shot_coin && curr_mana > 0.0:
+        coin_ref.coin_push( position, force_of_coin )
+        has_input = true
+        mana_recharge_timer.stop()
+        should_recharge_mana = false
+        if coin_ref.has_hit:
+            curr_mana = clampf( curr_mana - coin_cost_rate * delta, 0.0, total_mana )
+
+    if Input.is_action_pressed( "pull_coin" ) && has_shot_coin && curr_mana > 0.0:
+        coin_ref.coin_pull( position, force_of_coin )
+        has_input = true
+        mana_recharge_timer.stop()
+        should_recharge_mana = false
+        if coin_ref.has_hit:
+            curr_mana = clampf( curr_mana - coin_cost_rate * delta, 0.0, total_mana )
+
+    if !has_shot_coin && Input.is_action_just_pressed( "push_coin" ):
+        coin_ref.start_coin_push( position, velocity )
+
+    if !has_input && mana_recharge_timer.is_stopped():
+        mana_recharge_timer.start()
+
+
+func update_mana_bar( delta: float ) -> void:
+    if should_recharge_mana:
+        curr_mana = lerp( curr_mana, total_mana, coin_recharge_rate * delta )
+
+    mana_bar.set_value_no_signal( curr_mana )
