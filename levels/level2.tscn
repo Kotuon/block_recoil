@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://do6kyy7k0r5bw"]
+
+[ext_resource type="PackedScene" uid="uid://dod4kcsuct0gr" path="res://terrain/moving_platform.tscn" id="1_wehpu"]
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="2_t7tqq"]
+
+[node name="level2" type="Node2D"]
+
+[node name="MovingPlatforms" type="Node" parent="."]
+
+[node name="moving_platform10" parent="MovingPlatforms" instance=ExtResource("1_wehpu")]
+position = Vector2(2830, -832)
+scale = Vector2(2.75, 1)
+offset = Vector2(500, 0)
+duration = 6.0
+
+[node name="moving_platform11" parent="MovingPlatforms" instance=ExtResource("1_wehpu")]
+position = Vector2(3690, -832)
+scale = Vector2(2.75, 1)
+offset = Vector2(500, 0)
+duration = 6.0
+
+[node name="Floors" type="Node" parent="."]
+
+[node name="Floor14" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(0, -432)
+scale = Vector2(2.75, 1)
+
+[node name="Floor15" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(270, -412)
+scale = Vector2(2.75, 1)
+
+[node name="Floor16" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(540, -472)
+scale = Vector2(2.75, 1)
+
+[node name="Floor17" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(810, -432)
+scale = Vector2(2.75, 1)
+
+[node name="Floor18" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(965, -632)
+scale = Vector2(2.75, 1)
+
+[node name="Floor19" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(1255, -832)
+scale = Vector2(2.75, 1)
+
+[node name="Floor20" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(1705, -832)
+scale = Vector2(2.75, 1)
+
+[node name="Floor21" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(2380, -832)
+scale = Vector2(2.75, 1)
+
+[node name="Floor22" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(3510, -832)
+scale = Vector2(2.75, 1)
+
+[node name="Floor23" parent="Floors" instance=ExtResource("2_t7tqq")]
+position = Vector2(4460, -1232)
+scale = Vector2(2.75, 1)

@@ -1,6 +1,11 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var camera := $Camera2D
+var time_in_air : float = 0.0
+var max_time_in_air : float = 1.0
+var startup_time_in_air : float = 0.75
+
 ## Movement ##
 # Scale numbers so values aren't as large
 var modifier : float = 100.0
@@ -11,8 +16,8 @@ var walk_speed : float = 400.0
 var friction : float = 0.1
 var accel : float = 0.25
 
+var last_checkpoint : Checkpoint
 var freeze_timer := Timer.new()
-var last_grounded_position : Vector2
 var time_frozen : float = 0.75
 var can_move : bool = true
 
@@ -30,13 +35,14 @@ var has_jump_input : bool = false
 
 ## Coin ##
 var coin_ref : CharacterBody2D
-var force_of_coin : float = 15.0
+var force_of_coin : float = 25.0
+var force_on_player : float = 15.0
 var has_shot_coin : bool = false
 # Resource bar
 @onready var mana_bar := $ManaBar
 var mana_recharge_timer := Timer.new()
 var total_mana : float = 100.0
-var coin_cost_rate : float = 90.0
+var coin_cost_rate : float = 80.0
 var coin_recharge_rate : float = 1.0
 var curr_mana : float = total_mana
 var time_until_mana_recharge_starts : float = 1.0
@@ -45,8 +51,7 @@ var should_recharge_mana : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    # Initializing respawn point
-    last_grounded_position = position
+    last_checkpoint = get_parent().get_node( "StartPosition" )
 
     add_child( freeze_timer )
     freeze_timer.set_one_shot( true )
@@ -104,6 +109,8 @@ func _physics_process( _delta: float ) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process( delta: float ) -> void:
+    var last_floor_collision : bool = is_on_floor()
+
     if can_move:
         update_walk( delta )
         update_jump()
@@ -111,15 +118,33 @@ func _process( delta: float ) -> void:
 
     update_mana_bar( delta )
 
+    if !is_on_floor():
+        time_in_air += delta
+
+        if last_floor_collision:
+            if time_in_air < 0.0:
+                time_in_air = 0.0
+    else:
+        time_in_air -= delta
+
+        if time_in_air > startup_time_in_air + 1.0:
+            time_in_air = startup_time_in_air + 1.0
+
+    #camera.zoom.x = lerp( 0.9, 0.5, clampf( time_in_air - startup_time_in_air, 0.0, 1.0 ) )
+    #camera.zoom.y = lerp( 0.9, 0.5, clampf( time_in_air - startup_time_in_air, 0.0, 1.0 ) )
+
     if position.y > 1440.0:
         can_move = false
         freeze_timer.start()
-        position = last_grounded_position
+        position = last_checkpoint.global_position
+        time_in_air = 0.0
 
 
 func update_walk( delta: float ) -> void:
     var inputDirection = Input.get_axis( "walk_left", "walk_right" )
-    velocity.y += gravity * delta * modifier
+
+    if !is_on_floor():
+        velocity.y += gravity * delta * modifier
 
     if inputDirection != 0:
         var walkAmount = inputDirection * walk_speed * delta * modifier
@@ -145,8 +170,9 @@ func update_jump() -> void:
     if ( is_on_floor() || can_coyote_jump ) && has_jump_input:
         has_jump_input = false
         can_coyote_jump = false
-        last_grounded_position = position
         velocity.y = jump_speed * modifier
+        if time_in_air < startup_time_in_air:
+            time_in_air = 0.0
 
 
 func update_coin( delta: float ) -> void:
@@ -156,16 +182,8 @@ func update_coin( delta: float ) -> void:
 
     var has_input : bool = false
 
-    if Input.is_action_pressed( "push_coin" ) && has_shot_coin && curr_mana > 0.0:
-        coin_ref.coin_push( position, force_of_coin )
-        has_input = true
-        mana_recharge_timer.stop()
-        should_recharge_mana = false
-        if coin_ref.has_hit:
-            curr_mana = clampf( curr_mana - coin_cost_rate * delta, 0.0, total_mana )
-
-    if Input.is_action_pressed( "pull_coin" ) && has_shot_coin && curr_mana > 0.0:
-        coin_ref.coin_pull( position, force_of_coin )
+    if has_shot_coin && Input.is_action_pressed( "push_coin" ) && curr_mana > 0.0:
+        coin_ref.coin_push( position, force_of_coin, force_on_player )
         has_input = true
         mana_recharge_timer.stop()
         should_recharge_mana = false

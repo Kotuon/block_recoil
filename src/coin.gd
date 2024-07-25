@@ -34,15 +34,8 @@ func start_coin_push( player_position: Vector2, player_velocity : Vector2 ) -> v
     total_gravity = 0.0
 
 
-func coin_push( player_position: Vector2, force_of_coin: float ) -> void:
+func coin_push( player_position: Vector2, force_of_coin: float, force_on_player: float ) -> void:
     if !has_hit:
         move_velocity += ( get_global_mouse_position() - player_position ).normalized() * force_of_coin
     else:
-        player.velocity += ( player.position - position ).normalized() * force_of_coin
-
-
-func coin_pull( player_position: Vector2, force_of_coin: float ) -> void:
-    if !has_hit:
-        move_velocity -= ( get_global_mouse_position() - player_position ).normalized() * force_of_coin
-    else:
-        player.velocity -= ( player.position - position ).normalized() * force_of_coin
+        player.velocity += ( player.position - position ).normalized() * force_on_player
