@@ -14,7 +14,7 @@
 position = Vector2(30, -25)
 
 [node name="Player" parent="." instance=ExtResource("2_ifo84")]
-position = Vector2(9122, -925)
+position = Vector2(11757, -925)
 floor_snap_length = 5.0
 
 [node name="Sequences" type="Node2D" parent="."]
@@ -228,3 +228,66 @@ scale = Vector2(5.5, 1)
 
 [node name="checkpoint" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("2_4hgcb")]
 position = Vector2(2267, -25)
+
+[node name="S_CVerticalEasy" type="Node2D" parent="Sequences"]
+position = Vector2(12125, -900)
+
+[node name="Floor" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
+scale = Vector2(5.5, 1)
+
+[node name="Floor2" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
+position = Vector2(310, -200)
+scale = Vector2(5.5, 1)
+
+[node name="Floor3" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
+position = Vector2(575, -400)
+scale = Vector2(5.5, 1)
+
+[node name="Floor4" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
+position = Vector2(840, -600)
+scale = Vector2(5.5, 1)
+
+[node name="checkpoint" parent="Sequences/S_CVerticalEasy" instance=ExtResource("2_4hgcb")]
+position = Vector2(873, -625)
+
+[node name="S_CHorizontalEasy" type="Node2D" parent="Sequences"]
+position = Vector2(13485, -1500)
+
+[node name="Floor" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
+scale = Vector2(5.5, 1)
+
+[node name="Floor2" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
+position = Vector2(520, 0)
+scale = Vector2(5.5, 1)
+
+[node name="Floor3" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
+position = Vector2(1040, 0)
+scale = Vector2(5.5, 1)
+
+[node name="checkpoint" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("2_4hgcb")]
+position = Vector2(1150, -25)
+scale = Vector2(3.5, 1)
+
+[node name="S_CVerticalHard" type="Node2D" parent="Sequences"]
+position = Vector2(14925, -1500)
+
+[node name="Floor" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
+scale = Vector2(2.75, 1)
+
+[node name="Floor2" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
+position = Vector2(290, -300)
+scale = Vector2(2.75, 1)
+
+[node name="Floor3" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
+position = Vector2(580, -600)
+scale = Vector2(2.75, 1)
+
+[node name="Floor4" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
+position = Vector2(870, -900)
+scale = Vector2(2.75, 1)
+
+[node name="checkpoint" parent="Sequences/S_CVerticalHard" instance=ExtResource("2_4hgcb")]
+position = Vector2(925, -925)
+scale = Vector2(1.80016, 1)
+
+[node name="S_CHorizontalHard" type="Node2D" parent="Sequences"]

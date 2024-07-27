@@ -35,17 +35,18 @@ var has_jump_input : bool = false
 
 ## Coin ##
 var coin_ref : CharacterBody2D
+const COIN := preload( "res://items/coinv2.tscn" )
 var force_of_coin : float = 25.0
-var force_on_player : float = 15.0
+var force_on_player : float = 10.0
 var has_shot_coin : bool = false
 # Resource bar
 @onready var mana_bar := $ManaBar
 var mana_recharge_timer := Timer.new()
 var total_mana : float = 100.0
 var coin_cost_rate : float = 80.0
-var coin_recharge_rate : float = 1.0
+var coin_recharge_rate : float = 2.0
 var curr_mana : float = total_mana
-var time_until_mana_recharge_starts : float = 1.0
+var time_until_mana_recharge_starts : float = 0.5
 var should_recharge_mana : bool = false
 
 
@@ -107,14 +108,14 @@ func _physics_process( _delta: float ) -> void:
     pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process( delta: float ) -> void:
     var last_floor_collision : bool = is_on_floor()
 
     if can_move:
         update_walk( delta )
         update_jump()
-        update_coin( delta )
+        #update_coinv1( delta )
+        update_coinv2()
 
     update_mana_bar( delta )
 
@@ -149,7 +150,7 @@ func update_walk( delta: float ) -> void:
     if inputDirection != 0:
         var walkAmount = inputDirection * walk_speed * delta * modifier
         velocity.x = lerp( velocity.x, walkAmount, accel )
-    else:
+    elif is_on_floor():
         velocity.x = lerp( velocity.x, 0.0, friction )
 
 
@@ -175,8 +176,15 @@ func update_jump() -> void:
             time_in_air = 0.0
 
 
-func update_coin( delta: float ) -> void:
-    if Input.is_action_just_pressed( "take_coin" ):
+func update_mana_bar( delta: float ) -> void:
+    if should_recharge_mana:
+        curr_mana = lerp( curr_mana, total_mana, coin_recharge_rate * delta )
+
+    mana_bar.set_value_no_signal( curr_mana )
+
+
+func update_coinv1( delta: float ) -> void:
+    if Input.is_action_just_released( "push_coin" ):
         has_shot_coin = false
         coin_ref.position = Vector2( -10000000.0, -10000000.0 )
 
@@ -197,8 +205,14 @@ func update_coin( delta: float ) -> void:
         mana_recharge_timer.start()
 
 
-func update_mana_bar( delta: float ) -> void:
-    if should_recharge_mana:
-        curr_mana = lerp( curr_mana, total_mana, coin_recharge_rate * delta )
+func update_coinv2() -> void:
+    if Input.is_action_just_pressed( "push_coin" ):
+        print("new coin")
+        var coin_instance : CharacterBody2D = COIN.instantiate()
+        get_parent().add_child( coin_instance )
 
-    mana_bar.set_value_no_signal( curr_mana )
+        var direction_to_mouse : Vector2 = ( get_global_mouse_position() - position ).normalized()
+        coin_instance.global_position = global_position
+        coin_instance.velocity = direction_to_mouse * force_of_coin * 50.0
+
+        velocity += direction_to_mouse * -1.0 * force_on_player * 50.0

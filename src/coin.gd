@@ -11,7 +11,6 @@ var player : CharacterBody2D
 
 
 func _physics_process( _delta: float ) -> void:
-
     if !has_hit:
         velocity = move_velocity
         total_gravity += gravity

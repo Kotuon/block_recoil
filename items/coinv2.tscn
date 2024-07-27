@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://e82cu5tifuxl"]
+
+[ext_resource type="Script" path="res://src/coinv2.gd" id="1_4ighl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3lox0"]
+radius = 10.0
+height = 20.0
+
+[sub_resource type="Gradient" id="Gradient_3j3gl"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ugn66"]
+gradient = SubResource("Gradient_3j3gl")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idgmw"]
+
+[node name="coinv2" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_4ighl")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_3lox0")
+texture = SubResource("GradientTexture1D_ugn66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_idgmw")
