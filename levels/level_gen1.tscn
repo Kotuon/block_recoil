@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://byljl4slxclo2"]
+
+[ext_resource type="Script" path="res://src/level_generator.gd" id="1_7bmxq"]
+[ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="2_5sncq"]
+
+[node name="level_gen1" type="Node2D"]
+script = ExtResource("1_7bmxq")
+difficulty_curve = Array[int]([0, 0, 1, 0, 1, 1])
+
+[node name="mouse_cursor" parent="." instance=ExtResource("2_5sncq")]

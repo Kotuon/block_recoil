@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://04o6truo23rv"]
+
+[ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="1_sp20i"]
+[ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_6c6ji"]
+[ext_resource type="PackedScene" uid="uid://co80gk8vy0sbu" path="res://characters/player.tscn" id="3_66010"]
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="4_ery86"]
+[ext_resource type="PackedScene" uid="uid://8yonggrq6xwy" path="res://items/button.tscn" id="4_if1mw"]
+[ext_resource type="PackedScene" uid="uid://u2sir8i7m5dt" path="res://items/door.tscn" id="6_jb4jm"]
+
+[node name="level_puzzle_1" type="Node2D"]
+
+[node name="mouse_cursor" parent="." instance=ExtResource("1_sp20i")]
+
+[node name="StartPosition" parent="." instance=ExtResource("2_6c6ji")]
+position = Vector2(30, -25)
+
+[node name="Player" parent="." instance=ExtResource("3_66010")]
+position = Vector2(30, -25)
+floor_snap_length = 5.0
+
+[node name="Button" parent="." instance=ExtResource("4_if1mw")]
+position = Vector2(257, -73)
+
+[node name="Floor" parent="." instance=ExtResource("4_ery86")]
+scale = Vector2(48, 1)
+
+[node name="door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_jb4jm")]
+position = Vector2(475, -180)
+scale = Vector2(1, 4.48)
+offset = Vector2(0, -180)
+duration = 2.0
+buttons = [NodePath("../Button")]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4nb8jwodofko"]
+
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_ibwnf"]
+[ext_resource type="PackedScene" uid="uid://dod4kcsuct0gr" path="res://terrain/moving_platform.tscn" id="2_q6p4r"]
+[ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="3_gioal"]
+
+[node name="S_MPHorizontalEasy" type="Node2D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_ibwnf")]
+scale = Vector2(5.5, 1)
+
+[node name="moving_platform" parent="." instance=ExtResource("2_q6p4r")]
+position = Vector2(310, 0)
+scale = Vector2(5.5, 1)
+offset = Vector2(300, 0)
+
+[node name="moving_platform2" parent="." instance=ExtResource("2_q6p4r")]
+position = Vector2(1220, 0)
+scale = Vector2(5.5, 1)
+offset = Vector2(-300, 0)
+
+[node name="moving_platform3" parent="." instance=ExtResource("2_q6p4r")]
+position = Vector2(1530, 0)
+scale = Vector2(5.5, 1)
+offset = Vector2(300, 0)
+
+[node name="Floor2" parent="." instance=ExtResource("1_ibwnf")]
+position = Vector2(2140, 0)
+scale = Vector2(5.5, 1)
+
+[node name="checkpoint" parent="." instance=ExtResource("3_gioal")]
+position = Vector2(2173, -25)

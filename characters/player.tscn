@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://co80gk8vy0sbu"]
+[gd_scene load_steps=11 format=3 uid="uid://co80gk8vy0sbu"]
 
-[ext_resource type="Script" path="res://characters/player.gd" id="1_281eu"]
+[ext_resource type="Script" path="res://src/player.gd" id="1_7qcpt"]
+[ext_resource type="Script" path="res://src/shake_camera.gd" id="2_7kx8t"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_jit7h"]
 
@@ -19,9 +20,16 @@ size = Vector2(25, 50)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hi0p1"]
 bg_color = Color(1, 0.282353, 0.564706, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p2bbv"]
+noise_type = 3
+
+[sub_resource type="Gradient" id="Gradient_dbpp3"]
+offsets = PackedFloat32Array(0, 0.735099, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Player" type="CharacterBody2D"]
 floor_constant_speed = true
-script = ExtResource("1_281eu")
+script = ExtResource("1_7qcpt")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(25, 50)
@@ -51,5 +59,23 @@ show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.9, 0.9)
+process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
+script = ExtResource("2_7kx8t")
+noise = SubResource("FastNoiseLite_p2bbv")
+
+[node name="ShotParticles" type="CPUParticles2D" parent="."]
+z_index = 1
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+color_ramp = SubResource("Gradient_dbpp3")

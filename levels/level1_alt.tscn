@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://c457x2s0r5sva"]
+[gd_scene load_steps=16 format=3 uid="uid://c457x2s0r5sva"]
 
 [ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="1_wa27n"]
 [ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_4hgcb"]
 [ext_resource type="PackedScene" uid="uid://co80gk8vy0sbu" path="res://characters/player.tscn" id="2_ifo84"]
-[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="3_dtl50"]
-[ext_resource type="PackedScene" uid="uid://dod4kcsuct0gr" path="res://terrain/moving_platform.tscn" id="4_n118j"]
+[ext_resource type="PackedScene" uid="uid://c8l3atnn201qk" path="res://sequences/s_horizontal_jumps_easy.tscn" id="4_55wsb"]
+[ext_resource type="PackedScene" uid="uid://b0olqis6eb1vf" path="res://sequences/s_vertical_jumps_easy.tscn" id="5_vmi7q"]
+[ext_resource type="PackedScene" uid="uid://bdcyammoejxqy" path="res://sequences/s_horizontal_jumps_hard.tscn" id="6_flcae"]
+[ext_resource type="PackedScene" uid="uid://db5mfx4htvfhw" path="res://sequences/s_vertical_jumps_hard.tscn" id="7_fcql8"]
+[ext_resource type="PackedScene" uid="uid://c4nb8jwodofko" path="res://sequences/s_mp_horizontal_easy.tscn" id="8_m2lu0"]
+[ext_resource type="PackedScene" uid="uid://bw8marjriyh0m" path="res://sequences/s_mp_vertical_easy.tscn" id="9_xsln6"]
+[ext_resource type="PackedScene" uid="uid://bpm66olgqoodb" path="res://sequences/s_horizontal_jumps_hard_2.tscn" id="10_d872k"]
+[ext_resource type="PackedScene" uid="uid://bt4b22dolwenm" path="res://sequences/s_mp_horizontal_hard.tscn" id="11_ah3ta"]
+[ext_resource type="PackedScene" uid="uid://ddjnlr1d1dp3c" path="res://sequences/s_c_vertical_easy.tscn" id="12_digqc"]
+[ext_resource type="PackedScene" uid="uid://ctt643tbe8o7" path="res://sequences/s_c_horizontal_easy.tscn" id="13_mb1fr"]
+[ext_resource type="PackedScene" uid="uid://bcgxi4gekp7if" path="res://sequences/s_c_vertical_hard.tscn" id="14_5g0te"]
+[ext_resource type="PackedScene" uid="uid://cr7arccflaolc" path="res://sequences/s_c_horizontal_hard.tscn" id="15_258cx"]
 
 [node name="level1_alt" type="Node2D"]
 
@@ -14,280 +24,42 @@
 position = Vector2(30, -25)
 
 [node name="Player" parent="." instance=ExtResource("2_ifo84")]
-position = Vector2(11757, -925)
+position = Vector2(30, -25)
 floor_snap_length = 5.0
 
 [node name="Sequences" type="Node2D" parent="."]
 
-[node name="S_HorizontalJumpsEasy" type="Node2D" parent="Sequences"]
+[node name="S_HorizontalJumpsEasy" parent="Sequences" instance=ExtResource("4_55wsb")]
 
-[node name="Floor" parent="Sequences/S_HorizontalJumpsEasy" instance=ExtResource("3_dtl50")]
-scale = Vector2(5.5, 1)
-
-[node name="Floor2" parent="Sequences/S_HorizontalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(310, 0)
-scale = Vector2(5.5, 1)
-
-[node name="Floor3" parent="Sequences/S_HorizontalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(620, 0)
-scale = Vector2(5.5, 1)
-
-[node name="Floor4" parent="Sequences/S_HorizontalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(930, 0)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_HorizontalJumpsEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(970, -25)
-
-[node name="S_VerticalJumpsEasy" type="Node2D" parent="Sequences"]
+[node name="S_VerticalJumpsEasy" parent="Sequences" instance=ExtResource("5_vmi7q")]
 position = Vector2(1195, 0)
 
-[node name="Floor" parent="Sequences/S_VerticalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(0, -40)
-scale = Vector2(5.5, 1)
-
-[node name="Floor2" parent="Sequences/S_VerticalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(265, -80)
-scale = Vector2(5.5, 1)
-
-[node name="Floor3" parent="Sequences/S_VerticalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(530, -120)
-scale = Vector2(5.5, 1)
-
-[node name="Floor4" parent="Sequences/S_VerticalJumpsEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(795, -160)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_VerticalJumpsEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(828, -185)
-
-[node name="S_HorizontalJumpsHard" type="Node2D" parent="Sequences"]
+[node name="S_HorizontalJumpsHard" parent="Sequences" instance=ExtResource("6_flcae")]
 position = Vector2(2300, 0)
 
-[node name="Floor" parent="Sequences/S_HorizontalJumpsHard" instance=ExtResource("3_dtl50")]
-scale = Vector2(2.75, 1)
-
-[node name="Floor2" parent="Sequences/S_HorizontalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(290, 0)
-scale = Vector2(2.75, 1)
-
-[node name="Floor3" parent="Sequences/S_HorizontalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(580, 0)
-scale = Vector2(2.75, 1)
-
-[node name="Floor4" parent="Sequences/S_HorizontalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(870, 0)
-scale = Vector2(2.75, 1)
-
-[node name="checkpoint" parent="Sequences/S_HorizontalJumpsHard" instance=ExtResource("2_4hgcb")]
-position = Vector2(901, -25)
-
-[node name="S_VerticalJumpsHard" type="Node2D" parent="Sequences"]
+[node name="S_VerticalJumpsHard" parent="Sequences" instance=ExtResource("7_fcql8")]
 position = Vector2(3370, 0)
 
-[node name="Floor" parent="Sequences/S_VerticalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(0, -40)
-scale = Vector2(2.75, 1)
-
-[node name="Floor2" parent="Sequences/S_VerticalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(290, -80)
-scale = Vector2(2.75, 1)
-
-[node name="Floor3" parent="Sequences/S_VerticalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(580, -120)
-scale = Vector2(2.75, 1)
-
-[node name="Floor4" parent="Sequences/S_VerticalJumpsHard" instance=ExtResource("3_dtl50")]
-position = Vector2(870, -160)
-scale = Vector2(2.75, 1)
-
-[node name="checkpoint" parent="Sequences/S_VerticalJumpsHard" instance=ExtResource("2_4hgcb")]
-position = Vector2(900, -185)
-
-[node name="S_MPHorizontalEasy" type="Node2D" parent="Sequences"]
+[node name="S_MPHorizontalEasy" parent="Sequences" instance=ExtResource("8_m2lu0")]
 position = Vector2(4440, 0)
 
-[node name="Floor" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("3_dtl50")]
-scale = Vector2(5.5, 1)
-
-[node name="moving_platform" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("4_n118j")]
-position = Vector2(310, 0)
-scale = Vector2(5.5, 1)
-offset = Vector2(300, 0)
-
-[node name="moving_platform2" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("4_n118j")]
-position = Vector2(1220, 0)
-scale = Vector2(5.5, 1)
-offset = Vector2(-300, 0)
-
-[node name="moving_platform3" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("4_n118j")]
-position = Vector2(1530, 0)
-scale = Vector2(5.5, 1)
-offset = Vector2(300, 0)
-
-[node name="Floor2" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(2140, 0)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_MPHorizontalEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(2173, -25)
-
-[node name="S_MPVerticalEasy" type="Node2D" parent="Sequences"]
+[node name="S_MPVerticalEasy" parent="Sequences" instance=ExtResource("9_xsln6")]
 position = Vector2(6890, 0)
 
-[node name="moving_platform" parent="Sequences/S_MPVerticalEasy" instance=ExtResource("4_n118j")]
-scale = Vector2(5.5, 1)
-offset = Vector2(0, -300)
-
-[node name="moving_platform2" parent="Sequences/S_MPVerticalEasy" instance=ExtResource("4_n118j")]
-position = Vector2(310, -600)
-scale = Vector2(5.5, 1)
-offset = Vector2(0, 300)
-
-[node name="moving_platform3" parent="Sequences/S_MPVerticalEasy" instance=ExtResource("4_n118j")]
-position = Vector2(620, -600)
-scale = Vector2(5.5, 1)
-offset = Vector2(0, -300)
-
-[node name="Floor" parent="Sequences/S_MPVerticalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(930, -900)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_MPVerticalEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(960, -925)
-
-[node name="S_HorizontalJumpsHard2" type="Node2D" parent="Sequences"]
+[node name="S_HorizontalJumpsHard2" parent="Sequences" instance=ExtResource("10_d872k")]
 position = Vector2(8130, -900)
 
-[node name="Floor" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("3_dtl50")]
-scale = Vector2(1.5, 1)
-
-[node name="Floor2" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("3_dtl50")]
-position = Vector2(240, 0)
-scale = Vector2(1.5, 1)
-
-[node name="Floor3" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("3_dtl50")]
-position = Vector2(480, 0)
-scale = Vector2(1.5, 1)
-
-[node name="Floor4" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("3_dtl50")]
-position = Vector2(720, 0)
-scale = Vector2(1.5, 1)
-
-[node name="Floor5" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("3_dtl50")]
-position = Vector2(960, 0)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_HorizontalJumpsHard2" instance=ExtResource("2_4hgcb")]
-position = Vector2(992, -25)
-
-[node name="S_MPHorizontalHard" type="Node2D" parent="Sequences"]
+[node name="S_MPHorizontalHard" parent="Sequences" instance=ExtResource("11_ah3ta")]
 position = Vector2(9490, -900)
 
-[node name="Floor" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("3_dtl50")]
-scale = Vector2(1.5, 1)
-
-[node name="moving_platform" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("4_n118j")]
-position = Vector2(150, 0)
-scale = Vector2(1.5, 1)
-offset = Vector2(180, 0)
-
-[node name="Floor3" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(525, 0)
-scale = Vector2(1.5, 1)
-
-[node name="moving_platform2" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("4_n118j")]
-position = Vector2(900, 0)
-scale = Vector2(1.5, 1)
-offset = Vector2(-180, 0)
-duration = 4.0
-
-[node name="Floor4" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(1095, 0)
-scale = Vector2(1.5, 1)
-
-[node name="moving_platform3" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("4_n118j")]
-position = Vector2(1290, 0)
-scale = Vector2(1.5, 1)
-offset = Vector2(180, 0)
-duration = 3.0
-
-[node name="Floor6" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(1665, 0)
-scale = Vector2(1.5, 1)
-
-[node name="moving_platform4" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("4_n118j")]
-position = Vector2(2040, 0)
-scale = Vector2(1.5, 1)
-offset = Vector2(-180, 0)
-duration = 2.0
-
-[node name="Floor5" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(2235, 0)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_MPHorizontalHard" instance=ExtResource("2_4hgcb")]
-position = Vector2(2267, -25)
-
-[node name="S_CVerticalEasy" type="Node2D" parent="Sequences"]
+[node name="S_CVerticalEasy" parent="Sequences" instance=ExtResource("12_digqc")]
 position = Vector2(12125, -900)
 
-[node name="Floor" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
-scale = Vector2(5.5, 1)
-
-[node name="Floor2" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(310, -200)
-scale = Vector2(5.5, 1)
-
-[node name="Floor3" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(575, -400)
-scale = Vector2(5.5, 1)
-
-[node name="Floor4" parent="Sequences/S_CVerticalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(840, -600)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_CVerticalEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(873, -625)
-
-[node name="S_CHorizontalEasy" type="Node2D" parent="Sequences"]
+[node name="S_CHorizontalEasy" parent="Sequences" instance=ExtResource("13_mb1fr")]
 position = Vector2(13485, -1500)
 
-[node name="Floor" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
-scale = Vector2(5.5, 1)
-
-[node name="Floor2" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(520, 0)
-scale = Vector2(5.5, 1)
-
-[node name="Floor3" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("3_dtl50")]
-position = Vector2(1040, 0)
-scale = Vector2(5.5, 1)
-
-[node name="checkpoint" parent="Sequences/S_CHorizontalEasy" instance=ExtResource("2_4hgcb")]
-position = Vector2(1150, -25)
-scale = Vector2(3.5, 1)
-
-[node name="S_CVerticalHard" type="Node2D" parent="Sequences"]
+[node name="S_CVerticalHard" parent="Sequences" instance=ExtResource("14_5g0te")]
 position = Vector2(14925, -1500)
 
-[node name="Floor" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
-scale = Vector2(2.75, 1)
-
-[node name="Floor2" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(290, -300)
-scale = Vector2(2.75, 1)
-
-[node name="Floor3" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(580, -600)
-scale = Vector2(2.75, 1)
-
-[node name="Floor4" parent="Sequences/S_CVerticalHard" instance=ExtResource("3_dtl50")]
-position = Vector2(870, -900)
-scale = Vector2(2.75, 1)
-
-[node name="checkpoint" parent="Sequences/S_CVerticalHard" instance=ExtResource("2_4hgcb")]
-position = Vector2(925, -925)
-scale = Vector2(1.80016, 1)
-
-[node name="S_CHorizontalHard" type="Node2D" parent="Sequences"]
+[node name="S_CHorizontalHard" parent="Sequences" instance=ExtResource("15_258cx")]
+position = Vector2(16255, -2340)
