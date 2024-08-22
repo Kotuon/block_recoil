@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://sna44yhcxala"]
+
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_8vglf"]
+
+[node name="S_Straight" type="Node2D"]
+position = Vector2(19510, -2590)
+
+[node name="Floor" parent="." instance=ExtResource("1_8vglf")]
+scale = Vector2(22, 1)

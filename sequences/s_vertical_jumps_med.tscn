@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://db5mfx4htvfhw"]
+
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_f2lw3"]
+[ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_u4w1d"]
+
+[node name="S_VerticalJumpsHard" type="Node2D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_f2lw3")]
+position = Vector2(0, -40)
+scale = Vector2(2.75, 1)
+
+[node name="Floor2" parent="." instance=ExtResource("1_f2lw3")]
+position = Vector2(290, -80)
+scale = Vector2(2.75, 1)
+
+[node name="Floor3" parent="." instance=ExtResource("1_f2lw3")]
+position = Vector2(580, -120)
+scale = Vector2(2.75, 1)
+
+[node name="Floor4" parent="." instance=ExtResource("1_f2lw3")]
+position = Vector2(870, -160)
+scale = Vector2(2.75, 1)
+
+[node name="checkpoint" parent="." instance=ExtResource("2_u4w1d")]
+position = Vector2(900, -185)

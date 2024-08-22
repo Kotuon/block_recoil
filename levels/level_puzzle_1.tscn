@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://04o6truo23rv"]
+[gd_scene load_steps=8 format=3 uid="uid://04o6truo23rv"]
 
 [ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="1_sp20i"]
 [ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_6c6ji"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="4_ery86"]
 [ext_resource type="PackedScene" uid="uid://8yonggrq6xwy" path="res://items/button.tscn" id="4_if1mw"]
 [ext_resource type="PackedScene" uid="uid://u2sir8i7m5dt" path="res://items/door.tscn" id="6_jb4jm"]
+[ext_resource type="PackedScene" uid="uid://dlplwxmybcodd" path="res://items/boost.tscn" id="7_2nm3l"]
 
 [node name="level_puzzle_1" type="Node2D"]
 
@@ -18,15 +19,36 @@ position = Vector2(30, -25)
 position = Vector2(30, -25)
 floor_snap_length = 5.0
 
-[node name="Button" parent="." instance=ExtResource("4_if1mw")]
-position = Vector2(257, -73)
-
 [node name="Floor" parent="." instance=ExtResource("4_ery86")]
 scale = Vector2(48, 1)
 
-[node name="door" parent="." node_paths=PackedStringArray("buttons") instance=ExtResource("6_jb4jm")]
-position = Vector2(475, -180)
-scale = Vector2(1, 4.48)
+[node name="Door" parent="." instance=ExtResource("6_jb4jm")]
+position = Vector2(500, -160)
+scale = Vector2(1, 4)
 offset = Vector2(0, -180)
 duration = 2.0
-buttons = [NodePath("../Button")]
+
+[node name="Button" parent="Door" instance=ExtResource("4_if1mw")]
+position = Vector2(-250, 27.5)
+scale = Vector2(1, 0.25)
+
+[node name="Door2" parent="." instance=ExtResource("6_jb4jm")]
+position = Vector2(1250, -160)
+scale = Vector2(1, 4)
+offset = Vector2(0, -180)
+duration = 2.0
+
+[node name="Button" parent="Door2" instance=ExtResource("4_if1mw")]
+position = Vector2(-250, 5)
+scale = Vector2(1, 0.25)
+
+[node name="Button2" parent="Door2" instance=ExtResource("4_if1mw")]
+position = Vector2(-500, 27.5)
+scale = Vector2(1, 0.25)
+
+[node name="boost" parent="." instance=ExtResource("7_2nm3l")]
+position = Vector2(355, -101)
+
+[node name="boost2" parent="." instance=ExtResource("7_2nm3l")]
+position = Vector2(355, -400)
+rotation = 0.785398

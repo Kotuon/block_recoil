@@ -18,6 +18,10 @@ func _process( _delta: float ) -> void:
     pass
 
 
+func _draw() -> void:
+    pass
+
+
 func _on_area_2d_body_entered( body: Node2D ) -> void:
     if !is_enabled && body.name.to_lower() == "player":
         mesh.set_texture( enabled_texture )

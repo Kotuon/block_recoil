@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://4pfr7qct1sa7"]
+
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_86sd2"]
+[ext_resource type="PackedScene" uid="uid://dlplwxmybcodd" path="res://items/boost.tscn" id="2_nw6k8"]
+[ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="3_ph1wc"]
+
+[node name="S_BoostMed" type="Node2D"]
+
+[node name="boost" parent="." instance=ExtResource("2_nw6k8")]
+position = Vector2(414, 0)
+power = 1400.0
+
+[node name="boost2" parent="." instance=ExtResource("2_nw6k8")]
+position = Vector2(783, -50)
+power = 1800.0
+
+[node name="Floor" parent="." instance=ExtResource("1_86sd2")]
+scale = Vector2(2.75, 1)
+
+[node name="Floor2" parent="." instance=ExtResource("1_86sd2")]
+position = Vector2(1110, 0)
+scale = Vector2(2.75, 1)
+
+[node name="checkpoint" parent="." instance=ExtResource("3_ph1wc")]
+position = Vector2(1162, -25)
+scale = Vector2(1.64, 1)

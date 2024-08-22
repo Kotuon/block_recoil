@@ -7,12 +7,12 @@ size = Vector2(40, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_4qaw5"]
 
-[sub_resource type="Gradient" id="Gradient_16y56"]
+[sub_resource type="Gradient" id="Gradient_k3m6o"]
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(0.560784, 0.737255, 0.560784, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_aqyfg"]
-gradient = SubResource("Gradient_16y56")
+gradient = SubResource("Gradient_k3m6o")
 
 [node name="moving_platform" type="Node2D"]
 script = ExtResource("1_peugi")

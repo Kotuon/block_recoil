@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyvmxxd1ob5p3"]
+
+[ext_resource type="Script" path="res://src/level_gen2.gd" id="1_51me4"]
+[ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="2_2md1v"]
+
+[node name="level_gen1" type="Node2D"]
+script = ExtResource("1_51me4")
+
+[node name="mouse_cursor" parent="." instance=ExtResource("2_2md1v")]

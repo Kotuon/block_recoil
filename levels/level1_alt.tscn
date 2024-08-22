@@ -1,20 +1,24 @@
-[gd_scene load_steps=16 format=3 uid="uid://c457x2s0r5sva"]
+[gd_scene load_steps=20 format=3 uid="uid://c457x2s0r5sva"]
 
 [ext_resource type="PackedScene" uid="uid://clm1ntt58qkjd" path="res://ui/mouse_cursor.tscn" id="1_wa27n"]
 [ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_4hgcb"]
 [ext_resource type="PackedScene" uid="uid://co80gk8vy0sbu" path="res://characters/player.tscn" id="2_ifo84"]
 [ext_resource type="PackedScene" uid="uid://c8l3atnn201qk" path="res://sequences/s_horizontal_jumps_easy.tscn" id="4_55wsb"]
 [ext_resource type="PackedScene" uid="uid://b0olqis6eb1vf" path="res://sequences/s_vertical_jumps_easy.tscn" id="5_vmi7q"]
-[ext_resource type="PackedScene" uid="uid://bdcyammoejxqy" path="res://sequences/s_horizontal_jumps_hard.tscn" id="6_flcae"]
-[ext_resource type="PackedScene" uid="uid://db5mfx4htvfhw" path="res://sequences/s_vertical_jumps_hard.tscn" id="7_fcql8"]
+[ext_resource type="PackedScene" uid="uid://bdcyammoejxqy" path="res://sequences/s_horizontal_jumps_med.tscn" id="6_flcae"]
+[ext_resource type="PackedScene" uid="uid://db5mfx4htvfhw" path="res://sequences/s_vertical_jumps_med.tscn" id="7_fcql8"]
 [ext_resource type="PackedScene" uid="uid://c4nb8jwodofko" path="res://sequences/s_mp_horizontal_easy.tscn" id="8_m2lu0"]
 [ext_resource type="PackedScene" uid="uid://bw8marjriyh0m" path="res://sequences/s_mp_vertical_easy.tscn" id="9_xsln6"]
 [ext_resource type="PackedScene" uid="uid://bpm66olgqoodb" path="res://sequences/s_horizontal_jumps_hard_2.tscn" id="10_d872k"]
 [ext_resource type="PackedScene" uid="uid://bt4b22dolwenm" path="res://sequences/s_mp_horizontal_hard.tscn" id="11_ah3ta"]
 [ext_resource type="PackedScene" uid="uid://ddjnlr1d1dp3c" path="res://sequences/s_c_vertical_easy.tscn" id="12_digqc"]
 [ext_resource type="PackedScene" uid="uid://ctt643tbe8o7" path="res://sequences/s_c_horizontal_easy.tscn" id="13_mb1fr"]
-[ext_resource type="PackedScene" uid="uid://bcgxi4gekp7if" path="res://sequences/s_c_vertical_hard.tscn" id="14_5g0te"]
-[ext_resource type="PackedScene" uid="uid://cr7arccflaolc" path="res://sequences/s_c_horizontal_hard.tscn" id="15_258cx"]
+[ext_resource type="PackedScene" uid="uid://bcgxi4gekp7if" path="res://sequences/s_c_vertical_med.tscn" id="14_5g0te"]
+[ext_resource type="PackedScene" uid="uid://cr7arccflaolc" path="res://sequences/s_c_horizontal_med.tscn" id="15_258cx"]
+[ext_resource type="PackedScene" uid="uid://8vlybbw2mf3e" path="res://sequences/s_vertical_hard.tscn" id="16_h4fkc"]
+[ext_resource type="PackedScene" uid="uid://sna44yhcxala" path="res://sequences/s_straight.tscn" id="17_q0nnr"]
+[ext_resource type="PackedScene" uid="uid://7kd8dl3ykfmk" path="res://sequences/s_boost_easy.tscn" id="18_dgeb0"]
+[ext_resource type="PackedScene" uid="uid://4pfr7qct1sa7" path="res://sequences/s_boost_med.tscn" id="19_vnsbq"]
 
 [node name="level1_alt" type="Node2D"]
 
@@ -24,7 +28,7 @@
 position = Vector2(30, -25)
 
 [node name="Player" parent="." instance=ExtResource("2_ifo84")]
-position = Vector2(30, -25)
+position = Vector2(20600, -2615)
 floor_snap_length = 5.0
 
 [node name="Sequences" type="Node2D" parent="."]
@@ -63,3 +67,14 @@ position = Vector2(14925, -1500)
 
 [node name="S_CHorizontalHard" parent="Sequences" instance=ExtResource("15_258cx")]
 position = Vector2(16255, -2340)
+
+[node name="S_VerticalHard" parent="Sequences" instance=ExtResource("16_h4fkc")]
+position = Vector2(17465, -2340)
+
+[node name="S_Straight" parent="Sequences" instance=ExtResource("17_q0nnr")]
+
+[node name="S_BoostEasy" parent="Sequences" instance=ExtResource("18_dgeb0")]
+position = Vector2(20570, -2590)
+
+[node name="S_BoostMed" parent="Sequences" instance=ExtResource("19_vnsbq")]
+position = Vector2(21790, -2590)

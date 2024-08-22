@@ -14,7 +14,7 @@ var max_walk_speed : float = 400.0
 var curr_walk_speed : float = 0.0
 var last_walk_speed : float = 0.0
 
-var friction : float = 0.25
+var friction : float = 0.20
 var accel : float = 0.25
 var air_control : float = 0.5
 
@@ -49,7 +49,7 @@ var total_mana : float = 1.0
 var coin_cost_rate : float = 1.0
 var coin_recharge_rate : float = 6.0
 var curr_mana : float = total_mana
-var time_until_mana_recharge_starts : float = 0.15
+var time_until_mana_recharge_starts : float = 0.02
 var should_recharge_mana : bool = false
 
 

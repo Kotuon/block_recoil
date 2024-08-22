@@ -7,46 +7,46 @@
 [node name="S_MPHorizontalHard" type="Node2D"]
 
 [node name="Floor" parent="." instance=ExtResource("1_8odfw")]
-scale = Vector2(1.5, 1)
+scale = Vector2(2, 1)
 
 [node name="moving_platform" parent="." instance=ExtResource("2_y8lql")]
-position = Vector2(150, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(190, 0)
+scale = Vector2(2, 1)
 offset = Vector2(180, 0)
 
 [node name="Floor3" parent="." instance=ExtResource("1_8odfw")]
-position = Vector2(525, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(560, 0)
+scale = Vector2(2, 1)
 
 [node name="moving_platform2" parent="." instance=ExtResource("2_y8lql")]
-position = Vector2(900, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(930, 0)
+scale = Vector2(2, 1)
 offset = Vector2(-180, 0)
 duration = 4.0
 
 [node name="Floor4" parent="." instance=ExtResource("1_8odfw")]
-position = Vector2(1095, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(1120, 0)
+scale = Vector2(2, 1)
 
 [node name="moving_platform3" parent="." instance=ExtResource("2_y8lql")]
-position = Vector2(1290, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(1310, 0)
+scale = Vector2(2, 1)
 offset = Vector2(180, 0)
 duration = 3.0
 
 [node name="Floor6" parent="." instance=ExtResource("1_8odfw")]
-position = Vector2(1665, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(1680, 0)
+scale = Vector2(2, 1)
 
 [node name="moving_platform4" parent="." instance=ExtResource("2_y8lql")]
-position = Vector2(2040, 0)
-scale = Vector2(1.5, 1)
+position = Vector2(2050, 0)
+scale = Vector2(2, 1)
 offset = Vector2(-180, 0)
 duration = 2.0
 
 [node name="Floor5" parent="." instance=ExtResource("1_8odfw")]
-position = Vector2(2235, 0)
+position = Vector2(2240, 0)
 scale = Vector2(5.5, 1)
 
 [node name="checkpoint" parent="." instance=ExtResource("3_hom0d")]
-position = Vector2(2267, -25)
+position = Vector2(2270, -25)

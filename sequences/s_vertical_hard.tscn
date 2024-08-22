@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://8vlybbw2mf3e"]
+
+[ext_resource type="PackedScene" uid="uid://dcswfxq1gsnai" path="res://terrain/floor.tscn" id="1_upcnq"]
+[ext_resource type="PackedScene" uid="uid://th4ab0nf3ky3" path="res://items/checkpoint.tscn" id="2_1xmmg"]
+
+[node name="S_VerticalHard" type="Node2D"]
+position = Vector2(133, -155)
+
+[node name="Floor" parent="." instance=ExtResource("1_upcnq")]
+scale = Vector2(1.5, 1)
+
+[node name="Floor2" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(180, -20)
+scale = Vector2(1.5, 1)
+
+[node name="Floor3" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(405, -50)
+scale = Vector2(1.5, 1)
+
+[node name="Floor4" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(675, -90)
+scale = Vector2(1.5, 1)
+
+[node name="Floor5" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(945, -130)
+scale = Vector2(1.5, 1)
+
+[node name="Floor6" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(1215, -170)
+scale = Vector2(1.25, 1)
+
+[node name="Floor7" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(1485, -210)
+
+[node name="Floor8" parent="." instance=ExtResource("1_upcnq")]
+position = Vector2(1755, -250)
+scale = Vector2(2.75, 1)
+
+[node name="checkpoint" parent="." instance=ExtResource("2_1xmmg")]
+position = Vector2(1785, -275)
