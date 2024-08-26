@@ -9,6 +9,7 @@ var startup_time_in_air : float = 0.75
 
 ## Movement ##
 # General values
+@onready var jump_sound := $JumpSound
 var gravity : float = 1500.0
 var max_walk_speed : float = 400.0
 var curr_walk_speed : float = 0.0
@@ -37,6 +38,7 @@ var has_jump_input : bool = false
 
 ## Coin ##
 @onready var particle_emitter := $ShotParticles
+@onready var coin_sound := $CoinSound
 var coin_ref : CharacterBody2D
 const COIN := preload( "res://items/coinv2.tscn" )
 var force_of_coin : float = 25.0
@@ -178,6 +180,7 @@ func update_jump() -> void:
         velocity.y = jump_speed
         if time_in_air < startup_time_in_air:
             time_in_air = 0.0
+        #jump_sound.play()
 
 
 func update_mana_bar( delta: float ) -> void:
@@ -206,3 +209,4 @@ func update_coinv2() -> void:
         particle_emitter.direction = direction_to_mouse
         particle_emitter.initial_velocity_max = force_of_coin * 50.0
         particle_emitter.restart()
+        #coin_sound.play( 2.7 )
